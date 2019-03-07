@@ -1,0 +1,154 @@
+swagger: '2.0'
+info:
+  description: 'Dashboard'
+  version: 1.0.0.0
+  title: Dashboard Service
+schemes:
+- https
+basePath: /dashboard/v1
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: dashboard-service
+  description: API to query dashboard information
+paths:
+  /weather:
+    get:
+      tags:
+      - dashboard-service
+      summary: Get weather
+      operationId: GetHourlyWeather
+      parameters:
+      - name: state
+        in: query
+        required: true
+        description: weather for the state
+        type: string
+      - name: city
+        in: query
+        required: true
+        description: weather for the city
+        type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Hourly'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/SimpleResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/SimpleResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/SimpleResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/SimpleResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/SimpleResponse'
+  /portfolio:
+    get:
+      tags:
+      - dashboard-service
+      summary: Get portfolio
+      operationId: GetPortfolio
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Portfolio'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/SimpleResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/SimpleResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/SimpleResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/SimpleResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/SimpleResponse'
+  /healthz:
+    get:
+      operationId: HealthCheck
+      tags:
+      - health-checks
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/SimpleResponse'
+      security: []
+definitions:
+  Hourly:
+    type: object
+    properties:
+      time:
+        type: string
+      temperature:
+        type: string
+      condition:
+        type: string
+      feelsLike:
+        type: string
+      snow:
+        type: string
+  Portfolio:
+    type: object
+    properties:
+      symbol:
+        type: string
+      name:
+        type: string
+      pricePerShareNow:
+        type: number
+        format: double
+      pricePerShareBought:
+        type: number
+        format: double
+      totalValueBought:
+        type: number
+        format: double
+      totalValueNow:
+        type: number
+        format: double
+      profit:
+        type: number
+        format: double
+      sharesHeld:
+        type: number
+        format: double
+      loss:
+        type: number
+        format: double
+  SimpleResponse:
+    type: object
+    properties:
+      message:
+        type: string
+      id:
+        type: string
+host: 'localhost:9000'
