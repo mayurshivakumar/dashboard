@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "22190c21-efb6-476d-b0f3-4871718fc5dd",
+		"name": "Dashboard",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetHourlyWeather",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:9000/dashboard/v1/weather?state=TX&city=houston",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"dashboard",
+						"v1",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "state",
+							"value": "TX"
+						},
+						{
+							"key": "city",
+							"value": "houston"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Portfolio",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:9000/dashboard/v1/portfolio",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"dashboard",
+						"v1",
+						"portfolio"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
